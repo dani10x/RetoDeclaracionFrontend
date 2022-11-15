@@ -1,0 +1,211 @@
+<app-header></app-header>
+<div class="container">
+  <form [formGroup]="declaracionForm" (ngSubmit)="crearDeclaracion()">
+    <div class="form-group">
+      <label for="Placa">Placa</label>
+      <select name="placaSelect" id="placaSelect" formControlName="vehiculo_placa">
+        <option [value]="item.placa" *ngFor="let item of vehiculos">{{item.placa}}</option>
+      </select>
+    </div>
+    <button type="submit" [disabled]="declaracionForm.invalid">Consultar</button>
+  </form>
+</div>
+<div *ngIf="opcion == 0">
+  <div class="container">
+    <div id="htmlData">
+      <h1>GOBERNACIÓN DE ANTIOQUIA <br>
+        SECRETARÍA DE HACIENDA - SUBSECRETARÍA DE INGRESOS<br>
+        DECLARACIÓN DEL IMPUESTO SOBRE VEHICULOS AUTOMOTORES
+      </h1>
+      <div class="numDeclaracion">
+        <label for="numDeclaracion">NÚMERO DE DECLARACIÓN</label>
+        <label for="num" class="num">{{declaracion.nro_declaracion}}</label>
+        <label for="fecha">FECHA</label>
+        <label for="num" class="num">{{declaracion.fecha}}</label>
+      </div>
+      <div class="A"></div>
+      <div class="B"></div>
+      <div class="C"></div>
+      <div class="D">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="titulo">D. DATOS DEL VEHICULO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <table class="subtable">
+                  <tr>
+                    <th>D1. PLACA</th>
+                    <th>D2. MARCA</th>
+                    <th>D3. LÍNEA</th>
+                    <th>D4. MODELO</th>
+                  </tr>
+                  <tr>
+                    <td>{{declaracion.vehiculoResponse.placa}}</td>
+                    <td>{{declaracion.vehiculoResponse.lineaResponse.marcaResponse.nombre}}</td>
+                    <td>{{declaracion.vehiculoResponse.lineaResponse.nombre}}</td>
+                    <td>{{declaracion.vehiculoResponse.modelo}}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table class="subtable">
+                  <tr>
+                    <th>D5. CLASE</th>
+                    <th>D6. CARROCERIA</th>
+                    <th>D7. GRUPO</th>
+                    <th>D8. NRO.PUERTAS</th>
+                    <th>D9. CILINDRAJE(cc)</th>
+                  </tr>
+                  <tr>
+                    <td>{{declaracion.vehiculoResponse.claseResponse.nombre}}</td>
+                    <td>{{declaracion.vehiculoResponse.carroceriaResponse.nombre}}</td>
+                    <td>{{declaracion.vehiculoResponse.grupo}}</td>
+                    <td>{{declaracion.vehiculoResponse.puertas}}</td>
+                    <td>{{declaracion.vehiculoResponse.cilindraje}}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table class="subtable">
+                  <tr>
+                    <th>D10. CAPACIDAD DE CARGA</th>
+                    <th>D11. CAPACIDAD DE PASAJEROS</th>
+                    <th>D12. MUNICIPIO DE MATRÍCULA</th>
+                    <th>D13. DEPARTAMENTO DE MATRÍULA</th>
+                  </tr>
+                  <tr>
+                    <td>{{declaracion.vehiculoResponse.capacidad_carga}}</td>
+                    <td></td>
+                    <td>{{declaracion.vehiculoResponse.municipioResponse.nombre}}</td>
+                    <td>{{declaracion.vehiculoResponse.municipioResponse.departamentoResponse.nombre}}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table class="subtable">
+                  <tr>
+                    <th>D14. BLINDADO</th>
+                    <th>D15. IMPORTADO</th>
+                    <th>D16. COMPAÑIA QUE EXPIDE EL SOAT</th>
+                    <th>D17. NIT COMPAÑÍA QUE EXPIDE EL SOAT</th>
+                    <th>D18. DV</th>
+                  </tr>
+                  <tr>
+                    <td>{{declaracion.vehiculoResponse.blindado}}</td>
+                    <td>{{declaracion.vehiculoResponse.importado}}</td>
+                    <td>{{declaracion.vehiculoResponse.compania_soatResponse.nombre}}</td>
+                    <td>{{declaracion.vehiculoResponse.compania_soatResponse.nit}}</td>
+                    <td>{{declaracion.vehiculoResponse.dv}}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table class="subtable">
+                  <tr>
+                    <th>D19. No. DE PÓLIZA</th>
+                    <th>D20. VENICMIENTO DE PÓLIZA</th>
+                    <th>D21. CAJA</th>
+                    <th>D22. TRACCIÓN</th>
+                  </tr>
+                  <tr>
+                    <td>{{declaracion.vehiculoResponse.poliza}}</td>
+                    <td>{{declaracion.vehiculoResponse.vencimiento_poliza}}</td>
+                    <td>{{declaracion.vehiculoResponse.cajaResponse.nombre}}</td>
+                    <td>{{declaracion.vehiculoResponse.traccionResponse.nombre}}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+      <br>
+      <div class="E">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="titulo">E. LIQUIDACION PRIVADA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <table class="subtable">
+                  <tr>
+                    <th>1. AVALUO COMERCIAL DEL VEHICULO</th>
+                    <th>2. IMPUESTO SOBRE VEHÍCULOS AUTOMOTORES</th>
+                    <th>3. MAS SANCIONES</th>
+                    <th>4. MENOS DESCUENTOS</th>
+                    <th>5. TOTAL A CARGO</th>
+                  </tr>
+                  <tr>
+                    <td>{{avaluo.valor}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{declaracion.valor}}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <div class="F">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="titulo">F. PAGO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <table class="subtable">
+                  <tr>
+                    <th>6. TOTAL A CARGO</th>
+                    <th>7. INTERESES DE MORA</th>
+                    <th>8. PAGOS ANTERIORES</th>
+                    <th>9. DESCUENTOS INTERESES</th>
+                    <th>10. SALDO A FAVOR</th>
+                    <th>11. TOTAL A PAGAR</th>
+                  </tr>
+                  <tr>
+                    <td>{{declaracion.valor}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{declaracion.valor}}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="descargar">
+      <button (click)="downloadPDF()">Descargar</button>
+    </div>
+  </div>
+</div>
+
+<div class="piePagina" id="piePagina">
+  <app-footer></app-footer>
+</div>
+

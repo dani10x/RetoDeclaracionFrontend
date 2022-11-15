@@ -1,0 +1,35 @@
+.numDeclaracion, h1, .titulo, .table{
+  text-align: center;
+  font-size: small;
+}
+
+.table, .subtable{
+  font-family: Arial, Helvetica, sans-serif;
+  table-layout: fixed;
+  width: 100%;
+  font-size: smaller;
+}
+
+.table{
+  border-collapse: collapse;
+  border: 3px solid black;
+}
+
+.num, td{
+  border: 2px solid black;
+}
+
+.piePagina{
+  position: sticky;
+  bottom: 0;
+}
+
+.descargar{
+  margin: 0 auto;
+}
+
+button{
+  margin: 1%;
+}
+
+
